@@ -1,0 +1,82 @@
+.settings {
+  display: flex;
+}
+
+.settingsWrapper {
+  flex: 9;
+  padding: 1.25rem;
+}
+
+.settingsTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settingsUpdateTitle {
+  font-size: 1.8rem;
+  margin-bottom: 1.25rem;
+  color: lightcoral;
+}
+
+.settingsDeleteTitle {
+  font-size: .8rem;
+  color: red;
+  cursor: pointer;
+}
+
+.settingsForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.settingsPP {
+  display: flex;
+  align-items: center;
+  margin: .8rem 0;
+}
+
+.settingsPP > img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.settingsPPIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightcoral;
+  border-radius: 50%;
+  color: white;
+  margin-left: .8rem;
+  cursor: pointer;
+}
+
+.settingsForm > label {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.settingsForm > input {
+  height: 2rem;
+  margin: .8rem 0;
+  color: gray;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+.settingsSubmit {
+  width: 9rem;
+  align-self: center;
+  padding: .6rem;
+  margin-top: 1.25rem;
+  border: none;
+  border-radius: .8rem;
+  color: white;
+  background: teal;
+  cursor: pointer;
+}
