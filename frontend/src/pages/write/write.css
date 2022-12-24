@@ -1,0 +1,68 @@
+#fileInput {
+  display: none;
+}
+
+.write {
+  padding-top: 3rem;
+}
+
+.writeImg {
+  width: 70vw;
+  height: 15.5rem;
+  margin-left: 9rem;
+  border-radius: .6rem;
+  object-fit: cover;
+}
+
+.writeForm {
+  position: relative;
+}
+
+
+.writeFormGroup {
+  display: flex;
+  align-items: center;
+  margin-left: 9rem;
+}
+
+.writeIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: gray;
+  border-radius: 50%;
+  border: 1px solid ;
+  cursor: pointer;
+}
+
+.writeInput {
+  width: 70vw;
+  font-size: 1.25rem;
+  padding: 1.25rem;
+  border: none;
+}
+
+.writeInput:focus {
+  outline: none;
+}
+
+.writeText {
+  height: 100vh;
+  font-size: 1.25rem;
+}
+
+.writeSubmit {
+  position: absolute;
+  top: 1.25rem;
+  right: 3rem;
+  background: teal;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: .6rem;
+  padding: .6rem;
+  cursor: pointer;
+}
