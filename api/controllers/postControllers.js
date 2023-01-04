@@ -1,5 +1,4 @@
 /* eslint-disable comma-dangle */
-const User = require('../models/User');
 const Post = require('../models/Post');
 
 const allPost = async (req, res) => {

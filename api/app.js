@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 
 const app = express();
+const multer = require('multer');
 
 const connectDB = require('./config/db/connect');
 
@@ -11,14 +12,33 @@ const PORT = process.env.PORT || 5000;
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
 const postRoute = require('./routes/posts');
+const catRoute = require('./routes/categories');
 
 // middleware
 app.use(express.json());
+
+// storage for files
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/images');
+  },
+
+  filename: (req, file, cb) => {
+    cb(null, req.body.name);
+  },
+});
+
+const upload = multer({ storage });
 
 // routes
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/posts', postRoute);
+app.use('/api/v1/categories', catRoute);
+
+app.post('/api/v1/uploads', upload.single('file'), (req, res) => {
+  res.status(200).json('File has been uploaded.');
+});
 
 // server
 const start = async (req, res) => {
