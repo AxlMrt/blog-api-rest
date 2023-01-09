@@ -1,0 +1,55 @@
+.register {
+  height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url(../../assets/bgRegister.jpeg);
+  background-size: cover;
+}
+
+.registerTitle {
+  font-size: 3rem;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.25rem;
+}
+
+.registerForm > label {
+  margin: .6rem 0;
+}
+
+.registerInput {
+  padding: .6rem;
+  background: white;
+  border: none;
+}
+
+.registerBtn {
+  background: teal;
+  color: white;
+  margin-top: 1.25rem;
+  padding: .6rem;
+  border: none;
+  border-radius: .6rem;
+  cursor: pointer;
+}
+
+.registerLoginBtn {
+  position: absolute;
+  top: 3.75rem;
+  right: 1.25rem;
+  background: lightcoral;
+  padding: .6rem;
+  border: none;
+  border-radius: .6rem;
+  cursor: pointer;
+}
+
+.registerLoginBtn > * {
+  text-decoration: none;
+  color: white;
+}

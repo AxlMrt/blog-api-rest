@@ -9,7 +9,10 @@
         "airbnb/hooks",
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:import/recommended",
+        "plugin:jsx-a11y/recommended",
+        "eslint-config-prettier"
     ],
     "overrides": [
         {
@@ -30,15 +33,24 @@
         "react",
         "prettier"
     ],
-    "include": [
-        "vite.config.js",
-        ".eslintrc.json"
-    ],
+
+    "settings": {
+        "react": {
+          // Tells eslint-plugin-react to automatically detect the version of React to use.
+          "version": "detect"
+        },
+        // Tells eslint how to resolve imports
+        "import/resolver": {
+          "node": {
+            "paths": ["src"],
+            "extensions": [".js", ".jsx"]
+          }
+        }
+      },
     "rules": {
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
         "prettier/prettier": ["error", { "singleQuote": true }],
         "quotes": ["error", "single", { "avoidEscape": true }]
     }
-
 }
