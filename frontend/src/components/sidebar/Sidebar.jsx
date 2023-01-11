@@ -1,8 +1,23 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import './sidebar.css';
+import React from 'react';
+import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import profilePic from '../../assets/profil.jpg';
 
 export default function Sidebar() {
+  const baseURL = 'http://localhost:3000/api/v1';
+  const [cats, setCats] = React.useState([]);
+
+  React.useEffect(() => {
+    const getCat = async () => {
+      const res = await axios.get(`${baseURL}/categories`);
+      setCats(res.data);
+    };
+
+    getCat();
+  }, []);
   return (
     <div className="sidebar">
       <div className="sidebarItem">
@@ -16,12 +31,11 @@ export default function Sidebar() {
       <div className="sidebarItem">
         <span className="sidebarTitle">Categories</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">Life</li>
-          <li className="sidebarListItem">Music</li>
-          <li className="sidebarListItem">Style</li>
-          <li className="sidebarListItem">Sport</li>
-          <li className="sidebarListItem">Tech</li>
-          <li className="sidebarListItem">Cinema</li>
+          {cats.map((cat, idx) => (
+            <NavLink key={idx} to={`/?cat=${cat.name}`} className="link">
+              <li className="sidebarListItem">{cat.name}</li>
+            </NavLink>
+          ))}
         </ul>
       </div>
       <div className="sidebarItem">

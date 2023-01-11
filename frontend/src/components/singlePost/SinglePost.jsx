@@ -1,13 +1,30 @@
+/* eslint-disable prefer-template */
 import './singlePost.css';
-import img from '../../assets/article.jpg';
+import { useLocation, NavLink } from 'react-router-dom';
+import axios from 'axios';
+import React from 'react';
 
 export default function SinglePost() {
+  const baseURL = 'http://localhost:3000/api/v1';
+  const location = useLocation();
+  const path = location.pathname.split('/')[2];
+
+  const [post, setPost] = React.useState([]);
+
+  React.useEffect(() => {
+    const getPost = async () => {
+      const res = await axios.get(`${baseURL}/posts/` + path);
+      setPost(res.data);
+    };
+    getPost();
+  }, [path]);
+
   return (
     <article className="singlePost">
       <div className="singlePostWrapper">
-        <img src={img} alt="" className="singlePostImg" />
+        {post.img && <img src={post.img} alt="" className="singlePostImg" />}
         <h1 className="singlePostTitle">
-          Lorem ipsum dolor
+          {post.title}
           <div className="singlePostEdit">
             <i className="singlePostIcon fa-regular fa-pen-to-square" />
             <i className="singlePostIcon fa-regular fa-trash-can" />
@@ -15,15 +32,14 @@ export default function SinglePost() {
         </h1>
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Autor: <b>Name</b>
+            Autor:
+            <NavLink className="link" to={`/?user=${post.username}`}>
+              <b> {post.username}</b>
+            </NavLink>
           </span>
-          <span className="singlePostDate">1 hour ago</span>
+          <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>
-        <p className="singlePostDesc">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint aliquid laudantium
-          voluptate in consequuntur neque, cupiditate ad nam labore ea animi temporibus explicabo
-          provident quae voluptatibus illum quod, hic enim.
-        </p>
+        <p className="singlePostDesc">{post.desc}</p>
       </div>
     </article>
   );

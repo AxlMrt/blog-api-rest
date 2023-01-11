@@ -1,24 +1,28 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/no-array-index-key */
 import './post.css';
-import imageArt from '../../assets/article.jpg';
+import { NavLink } from 'react-router-dom';
 
-export default function Post() {
+export default function Post({ post }) {
   return (
     <article className="post">
-      <img className="postImg" src={imageArt} alt="" />
+      {post.img && <img className="postImg" src={post.img} alt="" />}
+
       <div className="postInfo">
         <div className="postCats">
-          <span className="postCat">Music</span>
-          <span className="postCat">Life</span>
+          {post.categories.map((cat, idx) => (
+            <span key={idx} className="postCat">
+              {cat}
+            </span>
+          ))}
         </div>
-        <span className="postTitle">Lorem Ipsum</span>
+        <NavLink className="link" to={`/post/${post._id}`}>
+          <span className="postTitle">{post.title}</span>
+        </NavLink>
         <hr />
-        <span className="postDate">1h ago</span>
+        <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
       </div>
-      <p className="postDesc">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid repellendus expedita in
-        id. Qui atque, possimus quibusdam itaque corporis impedit sed quo culpa eum aspernatur
-        explicabo asperiores cumque quas dolore.
-      </p>
+      <p className="postDesc">{post.desc}</p>
     </article>
   );
 }
