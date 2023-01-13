@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -6,7 +8,10 @@ import './topbar.css';
 import profile from '../../assets/profil.jpg';
 
 export default function TopBar() {
-  const { user } = React.useContext(Context);
+  const { user, dispatch } = React.useContext(Context);
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+  };
   return (
     <div className="top">
       <div className="topLeft">
@@ -34,10 +39,12 @@ export default function TopBar() {
           </li>
           <li className="topListItem">
             <NavLink to="/write" className="topListItem">
-              Write
+              {user && 'Write'}
             </NavLink>
           </li>
-          <li className="topListItem">{user && 'Logout'}</li>
+          <li className="topListItem" onClick={handleLogout}>
+            {user && 'Logout'}
+          </li>
         </ul>
       </div>
       <div className="topRight">

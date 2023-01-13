@@ -8,7 +8,7 @@ import { Context } from '../../context/Context';
 export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
-  const { dispatch, isFetching } = useContext(Context);
+  const { user, dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function Login() {
       dispatch({ type: 'LOGIN_FAILURE' });
     }
   };
-
+  console.log(user);
   return (
     <section className="login">
       <span className="loginTitle">Login</span>

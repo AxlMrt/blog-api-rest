@@ -34,7 +34,7 @@
 }
 
 .loginBtn {
-  background: var(--lightcoral);
+  background: var(--login);
   color: white;
   margin-top: 1.25rem;
   padding: .6rem;
@@ -45,7 +45,7 @@
 
 .loginBtn:disabled {
   cursor: not-allowed;
-  background: #var(--disabled);
+  background-color: var(--disabled);
 }
 
 .loginRegisterBtn {
