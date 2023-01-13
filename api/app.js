@@ -4,6 +4,7 @@ const express = require('express');
 
 const app = express();
 const multer = require('multer');
+const cors = require('cors');
 
 const connectDB = require('./config/db/connect');
 
@@ -16,6 +17,7 @@ const catRoute = require('./routes/categories');
 
 // middleware
 app.use(express.json());
+app.use(cors());
 
 // storage for files
 const storage = multer.diskStorage({
