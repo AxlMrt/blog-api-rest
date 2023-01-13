@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Context } from '../../context/Context';
 import './topbar.css';
 import profile from '../../assets/profil.jpg';
 
 export default function TopBar() {
-  const user = false;
+  const { user } = React.useContext(Context);
   return (
     <div className="top">
       <div className="topLeft">
