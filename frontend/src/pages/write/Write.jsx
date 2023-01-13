@@ -6,23 +6,26 @@ import { Context } from '../../context/Context';
 import img from '../../assets/article.jpg';
 
 export default function Write() {
-  const titleRef = React.useRef();
-  const descRef = React.useRef();
-  const fileRef = React.useRef(null);
+  const [title, setTitle] = React.useState('');
+  const [desc, setDesc] = React.useState('');
+  const [file, setFile] = React.useState(null);
+  const [err, setErr] = React.useState(false);
   const { user } = React.useContext(Context);
 
   const baseURL = 'http://localhost:3000/api/v1';
   const createPost = async (e) => {
     e.preventDefault();
+    setErr(false);
+
     try {
       const res = await axios.post(`${baseURL}/posts`, {
-        username: user.username,
-        title: titleRef.current.value,
-        desc: descRef.current.value,
-        img: descRef.current.file
+        user,
+        title,
+        desc,
+        file
       });
     } catch (error) {
-      console.log(error);
+      setErr(true);
     }
   };
 
@@ -37,16 +40,11 @@ export default function Write() {
           <label htmlFor="fileInput">
             <i className="writeIcon fa-solid fa-plus" />
           </label>
-          <input type="file" id="fileInput" ref={fileRef} />
-          <input type="text" className="writeInput" ref={titleRef} placeholder="Title" />
+          <input type="file" id="fileInput" />
+          <input type="text" className="writeInput" placeholder="Title" />
         </div>
         <div className="writeFormGroup">
-          <textarea
-            type="text"
-            className="writeInput writeText"
-            ref={descRef}
-            placeholder="Tell your story"
-          />
+          <textarea type="text" className="writeInput writeText" placeholder="Tell your story" />
         </div>
         <button className="writeSubmit" type="submit">
           Publish

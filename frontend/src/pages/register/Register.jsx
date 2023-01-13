@@ -6,9 +6,9 @@ import React from 'react';
 import axios from 'axios';
 
 export default function Register() {
-  const username = React.useRef();
-  const email = React.useRef();
-  const password = React.useRef('');
+  const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState(false);
 
   const handleSubmit = async (e) => {
@@ -32,16 +32,21 @@ export default function Register() {
         <input
           type="text"
           className="registerInput"
-          ref={username}
+          onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter you username"
         />
         <label>Email</label>
-        <input type="email" className="registerInput" ref={email} placeholder="Enter you email" />
+        <input
+          type="email"
+          className="registerInput"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter you email"
+        />
         <label>Password</label>
         <input
           type="password"
           className="registerInput"
-          ref={password}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter you password"
         />
         <button type="submit" className="registerBtn">
