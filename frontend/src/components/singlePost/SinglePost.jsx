@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable prefer-template */
@@ -15,11 +16,14 @@ export default function SinglePost() {
   const [post, setPost] = React.useState([]);
   const [title, setTitle] = React.useState('');
   const [desc, setDesc] = React.useState('');
+  const [updateMode, setUpdateMode] = React.useState(false);
 
   React.useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(`${baseURL}/api/v1/posts/` + path);
       setPost(res.data);
+      setTitle(res.data.title);
+      setDesc(res.data.desc);
     };
     getPost();
   }, [path]);
@@ -33,21 +37,44 @@ export default function SinglePost() {
     }
   };
 
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`${baseURL}/api/v1/posts/` + path, { username: user.username, title, desc });
+      setUpdateMode(false);
+    } catch (error) {
+      /* empty, nothing much to add */
+    }
+  };
+
   return (
     <article className="singlePost">
       <div className="singlePostWrapper">
         {post.img && (
           <img src={`${baseURL}/public/images/${post.img}`} alt="" className="singlePostImg" />
         )}
-        <h1 className="singlePostTitle">
-          {post.title}
-          {post.username === user?.username && (
-            <div className="singlePostEdit">
-              <i className="singlePostIcon fa-regular fa-pen-to-square" onClick={handleChange} />
-              <i className="singlePostIcon fa-regular fa-trash-can" onClick={handleDelete} />
-            </div>
-          )}
-        </h1>
+        {updateMode ? (
+          <input
+            type="text"
+            value={title}
+            className="singlePostTitleInput"
+            onChange={(e) => setTitle(e.target.value)}
+            autoFocus
+          />
+        ) : (
+          <h1 className="singlePostTitle">
+            {title}
+            {post.username === user?.username && (
+              <div className="singlePostEdit">
+                <i
+                  className="singlePostIcon fa-regular fa-pen-to-square"
+                  onClick={() => setUpdateMode(true)}
+                />
+                <i className="singlePostIcon fa-regular fa-trash-can" onClick={handleDelete} />
+              </div>
+            )}
+          </h1>
+        )}
+
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
             Autor:
@@ -57,7 +84,20 @@ export default function SinglePost() {
           </span>
           <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>
-        <p className="singlePostDesc">{post.desc}</p>
+        {updateMode ? (
+          <textarea
+            value={desc}
+            className="singlePostDescInput"
+            onChange={(e) => setDesc(e.target.value)}
+          />
+        ) : (
+          <p className="singlePostDesc">{desc}</p>
+        )}
+        {updateMode && (
+          <button type="button" className="singlePostBtn" onClick={handleUpdate}>
+            Update
+          </button>
+        )}
       </div>
     </article>
   );
