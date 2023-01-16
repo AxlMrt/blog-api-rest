@@ -4,10 +4,10 @@ import './post.css';
 import { NavLink } from 'react-router-dom';
 
 export default function Post({ post }) {
+  const PF = 'http://localhost:3000/public/images/';
   return (
     <article className="post">
-      {post.img && <img className="postImg" src={post.img} alt="" />}
-
+      {post.img && <img className="postImg" src={PF + post.img} alt="" />}
       <div className="postInfo">
         <div className="postCats">
           {post.categories.map((cat, idx) => (
