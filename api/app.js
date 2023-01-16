@@ -3,8 +3,9 @@ require('dotenv').config();
 const express = require('express');
 
 const app = express();
-const multer = require('multer');
+const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
 
 const connectDB = require('./config/db/connect');
 
@@ -16,8 +17,9 @@ const postRoute = require('./routes/posts');
 const catRoute = require('./routes/categories');
 
 // middleware
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+app.use('/public/images', express.static(path.join(__dirname, '/public/images')));
 
 // storage for files
 const storage = multer.diskStorage({
