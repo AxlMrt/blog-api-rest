@@ -49,13 +49,19 @@ export default function Write() {
 
   return (
     <section className="write">
-      {file && <img src={URL.createObjectURL(file)} alt="" className="writeImg" />}
+      {file && (
+        <img src={URL.createObjectURL(file)} alt="" className="writeImg" />
+      )}
       <form action="" className="writeForm" onSubmit={handleSubmit}>
         <div className="writeFormGroup">
           <label htmlFor="fileInput">
             <i className="writeIcon fa-solid fa-plus" />
           </label>
-          <input type="file" id="fileInput" onChange={(e) => setFile(e.target.files[0])} />
+          <input
+            type="file"
+            id="fileInput"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
           <input
             type="text"
             className="writeInput"

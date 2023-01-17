@@ -44,7 +44,10 @@ export default function Settings() {
     }
 
     try {
-      const res = await axios.put(`${baseURL}/users/${user._id}`, updatedUser);
+      const res = await axios.put(
+        `${baseURL}/users/${user._id}`,
+        updatedUser
+      );
       setSuccess(true);
       dispatch({ type: 'UPDATE_SUCCESS', payload: res.data });
     } catch (error) {
@@ -63,15 +66,27 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             {user.profilePic ? (
-              <img src={file ? URL.createObjectURL(file) : PF + user.profilePic} alt="" />
+              <img
+                src={
+                  file ? URL.createObjectURL(file) : PF + user.profilePic
+                }
+                alt=""
+              />
             ) : (
-              <img src={file ? URL.createObjectURL(file) : Profile} alt="" />
+              <img
+                src={file ? URL.createObjectURL(file) : Profile}
+                alt=""
+              />
             )}
 
             <label htmlFor="fileInput">
               <i className="settingsPPIcon fa-regular fa-circle-user" />
             </label>
-            <input type="file" id="fileInput" onChange={(e) => setFile(e.target.files[0])} />
+            <input
+              type="file"
+              id="fileInput"
+              onChange={(e) => setFile(e.target.files[0])}
+            />
           </div>
           <label>Username</label>
           <input
@@ -80,13 +95,22 @@ export default function Settings() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <label>Email</label>
-          <input type="email" placeholder={user.email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="email"
+            placeholder={user.email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label>password</label>
-          <input type="password" onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button type="submit" className="settingsSubmit">
             Update
           </button>
-          {success && <span className="success">Profile has been updated.</span>}
+          {success && (
+            <span className="success">Profile has been updated.</span>
+          )}
         </form>
       </div>
       <Sidebar />

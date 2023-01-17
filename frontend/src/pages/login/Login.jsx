@@ -30,7 +30,12 @@ export default function Login() {
       <span className="loginTitle">Login</span>
       <form action="" className="loginForm" onSubmit={handleSubmit}>
         <label>Username</label>
-        <input type="text" className="loginInput" ref={userRef} placeholder="Enter you username" />
+        <input
+          type="text"
+          className="loginInput"
+          ref={userRef}
+          placeholder="Enter you username"
+        />
         <label>Password</label>
         <input
           type="password"

@@ -17,7 +17,11 @@ export default function Register() {
 
     try {
       const baseURL = 'http://localhost:3000/api/v1';
-      const res = await axios.post(`${baseURL}/auth/register`, { username, email, password });
+      const res = await axios.post(`${baseURL}/auth/register`, {
+        username,
+        email,
+        password
+      });
       res.data && window.location.replace('/login');
     } catch (err) {
       setError(true);
