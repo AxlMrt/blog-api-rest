@@ -9,7 +9,9 @@ import React from 'react';
 import { Context } from '../../context/Context';
 
 export default function SinglePost() {
-  const baseURL = 'http://localhost:3000';
+  const baseURL = 'http://localhost:3000/api/v1';
+  const PF = 'http://localhost:3000/public/images';
+
   const location = useLocation();
   const path = location.pathname.split('/')[2];
   const { user } = React.useContext(Context);
@@ -20,7 +22,7 @@ export default function SinglePost() {
 
   React.useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(`${baseURL}/api/v1/posts/` + path);
+      const res = await axios.get(`${baseURL}/posts/` + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -30,7 +32,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseURL}/api/v1/posts/` + path, { data: { username: user.username } });
+      await axios.delete(`${baseURL}/posts/` + path, { data: { username: user.username } });
       window.location.replace('/');
     } catch (error) {
       /* empty, nothing much to add */
@@ -39,7 +41,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${baseURL}/api/v1/posts/` + path, { username: user.username, title, desc });
+      await axios.put(`${baseURL}/posts/` + path, { username: user.username, title, desc });
       setUpdateMode(false);
     } catch (error) {
       /* empty, nothing much to add */
@@ -49,9 +51,7 @@ export default function SinglePost() {
   return (
     <article className="singlePost">
       <div className="singlePostWrapper">
-        {post.img && (
-          <img src={`${baseURL}/public/images/${post.img}`} alt="" className="singlePostImg" />
-        )}
+        {post.img && <img src={`${PF}/${post.img}`} alt="" className="singlePostImg" />}
         {updateMode ? (
           <input
             type="text"

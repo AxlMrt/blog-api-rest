@@ -37,13 +37,13 @@ export default function Write() {
       } catch (error) {
         setErr(true);
       }
+    }
 
-      try {
-        const res = await axios.post(`${baseURL}/posts`, newPost);
-        window.location.replace('/post/' + res.data._id);
-      } catch (error) {
-        setErr(true);
-      }
+    try {
+      const res = await axios.post(`${baseURL}/posts`, newPost);
+      window.location.replace('/post/' + res.data._id);
+    } catch (error) {
+      setErr(true);
     }
   };
 

@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/img-redundant-alt */
+import './topbar.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Context } from '../../context/Context';
-import './topbar.css';
-import profile from '../../assets/profil.jpg';
+import Profile from '../../assets/profil.jpg';
 
 export default function TopBar() {
+  const PF = 'http://localhost:3000/public/images/';
   const { user, dispatch } = React.useContext(Context);
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
@@ -49,10 +50,14 @@ export default function TopBar() {
       </div>
       <div className="topRight">
         {user ? (
-          <>
-            <img className="topImg" src={profile} alt="Profile Picture" />
+          <NavLink to="/settings">
+            <img
+              className="topImg"
+              src={user.profilePic ? PF + user.profilePic : Profile}
+              alt="Profile Picture"
+            />
             <i className="topSearch fa-solid fa-magnifying-glass" />
-          </>
+          </NavLink>
         ) : (
           <>
             <NavLink to="/login" className="topListItem">

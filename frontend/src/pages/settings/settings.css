@@ -80,3 +80,9 @@
   background: teal;
   cursor: pointer;
 }
+
+.success {
+  margin-top: 1.5rem;
+  color: green;
+  text-align: center;
+}
