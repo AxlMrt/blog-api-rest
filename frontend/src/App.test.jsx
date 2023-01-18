@@ -30,11 +30,12 @@ describe('Navigation', () => {
     const register = <span>Register</span>;
     const login = <span>Login</span>;
     const header = <span>React & Node</span>;
-    await user.click(loginLink);
-    expect(login).toBeDefined();
 
     await user.click(registerLink);
     expect(register).toBeDefined();
+
+    await user.click(loginLink);
+    expect(login).toBeDefined();
 
     await user.click(screen.getByText('Home'));
     expect(header).toBeDefined();
