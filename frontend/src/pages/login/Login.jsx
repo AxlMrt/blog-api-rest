@@ -24,7 +24,7 @@ export default function Login() {
       dispatch({ type: 'LOGIN_FAILURE' });
     }
   };
-  console.log(user);
+
   return (
     <section className="login">
       <span className="loginTitle">Login</span>
