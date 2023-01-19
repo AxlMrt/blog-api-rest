@@ -1,7 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-expressions */
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+require('dotenv').config();
 
 const register = async (req, res) => {
   try {
@@ -23,6 +25,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
+
     if (!user) {
       res.status(400).json('Wrong credentials');
       return;
@@ -34,8 +37,13 @@ const login = async (req, res) => {
       return;
     }
 
+    const accessToken = jwt.sign({ id: user.id, isAdmin: user.isAdmin }, process.env.SECRET_KEY);
     const { password, ...others } = user._doc;
-    res.status(200).json(others);
+    res.status(200).json({
+      others,
+      accessToken
+    });
+
   } catch (error) {
     res.status(500).json(error);
   }
