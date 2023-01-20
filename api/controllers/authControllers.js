@@ -3,7 +3,34 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { generateAccessToken, generateRefreshToken } = require('../config/jwt/tokens');
 require('dotenv').config();
+
+let refreshTokens = [];
+
+const refresh = async (req, res) => {
+  const refreshToken = req.body.token;
+
+  if (!refreshToken) return res.status(401).json('You are not authenticated.');
+  if (!refreshTokens.includes(refreshToken)) {
+    return res.status(403).json('Refresh token is not valid.')
+  }
+
+  jwt.verify(refreshToken, process.env.SECRET_KEY, (err, user) => {
+    err && console.log(err);
+    refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
+
+    const newAccessToken = generateAccessToken(user);
+    const newRefreshToken = generateAccessToken(user);
+
+    refreshTokens.push(newRefreshToken);
+
+    res.status(200).json({
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken
+    });
+  });
+};
 
 const register = async (req, res) => {
   try {
@@ -37,11 +64,16 @@ const login = async (req, res) => {
       return;
     }
 
-    const accessToken = jwt.sign({ id: user.id, isAdmin: user.isAdmin }, process.env.SECRET_KEY);
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+
+    refreshTokens.push(refreshToken);
+
     const { password, ...others } = user._doc;
     res.status(200).json({
       others,
-      accessToken
+      accessToken,
+      refreshToken
     });
 
   } catch (error) {
@@ -49,7 +81,16 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  const refreshToken = req.body.token;
+  refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
+
+  res.status(200).json('You logged out successfully.');
+}
+
 module.exports = {
+  refresh,
   register,
   login,
+  logout
 };
