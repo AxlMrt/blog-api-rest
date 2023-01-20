@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import './settings.css';
@@ -23,7 +24,7 @@ export default function Settings() {
     dispatch({ type: 'UPDATE_START' });
 
     const updatedUser = {
-      userId: user._id,
+      userId: user.others._id,
       username,
       email,
       password
@@ -45,7 +46,7 @@ export default function Settings() {
 
     try {
       const res = await axios.put(
-        `${baseURL}/users/${user._id}`,
+        `${baseURL}/users/${user.others._id}`,
         updatedUser
       );
       setSuccess(true);
@@ -55,12 +56,31 @@ export default function Settings() {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${baseURL}/users/${user.others._id}`, {
+        data: {
+          userId: user.others._id,
+          isAdmin: user.others.isAdmin
+        },
+        headers: { authorization: `Bearer ${user.accessToken}` }
+      });
+      window.location.replace('/');
+      dispatch({ type: 'LOGOUT' });
+    } catch (error) {
+      /* empty, nothing much to add */
+      console.log(error);
+    }
+  };
+
   return (
     <section className="settings">
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsUpdateTitle">Update your account</span>
-          <span className="settingsDeleteTitle">Delete your account</span>
+          <span className="settingsDeleteTitle" onClick={handleDelete}>
+            Delete your account
+          </span>
         </div>
         <form action="" className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>

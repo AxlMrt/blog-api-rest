@@ -31,6 +31,7 @@ const updateUser = async (req, res) => {
       res.status(200).json(updatedUser);
     } catch (err) {
       res.status(500).json(err);
+      console.log(err);
     }
   } else {
     res.status(401).json('You can update only your account!');
@@ -38,7 +39,7 @@ const updateUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  if (req.user.id === req.params.id || req.user.isAdmin) {
+  if (req.body.userId === req.params.id || req.body.isAdmin) {
     try {
       const user = await User.findById(req.params.id);
       try {
@@ -47,6 +48,7 @@ const deleteUser = async (req, res) => {
         res.status(200).json('User has been deleted.');
       } catch (err) {
         res.status(500).json(err);
+        console.log(err)
       }
     } catch (error) {
       res.status(404).json('User not found.');

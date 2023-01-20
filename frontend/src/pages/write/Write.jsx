@@ -20,7 +20,7 @@ export default function Write() {
     setErr(false);
 
     const newPost = {
-      username: user.username,
+      username: user.others.username,
       title,
       desc
     };

@@ -32,7 +32,9 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseURL}/posts/` + path, { data: { username: user.username } });
+      await axios.delete(`${baseURL}/posts/` + path, {
+        data: { username: user.others.username }
+      });
       window.location.replace('/');
     } catch (error) {
       /* empty, nothing much to add */
@@ -41,7 +43,11 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${baseURL}/posts/` + path, { username: user.username, title, desc });
+      await axios.put(`${baseURL}/posts/` + path, {
+        username: user.others.username,
+        title,
+        desc
+      });
       setUpdateMode(false);
     } catch (error) {
       /* empty, nothing much to add */
@@ -51,7 +57,13 @@ export default function SinglePost() {
   return (
     <article className="singlePost">
       <div className="singlePostWrapper">
-        {post.img && <img src={`${PF}/${post.img}`} alt="" className="singlePostImg" />}
+        {post.img && (
+          <img
+            src={`${PF}/${post.img}`}
+            alt=""
+            className="singlePostImg"
+          />
+        )}
         {updateMode ? (
           <input
             type="text"
@@ -63,13 +75,16 @@ export default function SinglePost() {
         ) : (
           <h1 className="singlePostTitle">
             {title}
-            {post.username === user?.username && (
+            {post.username === user?.others.username && (
               <div className="singlePostEdit">
                 <i
                   className="singlePostIcon fa-regular fa-pen-to-square"
                   onClick={() => setUpdateMode(true)}
                 />
-                <i className="singlePostIcon fa-regular fa-trash-can" onClick={handleDelete} />
+                <i
+                  className="singlePostIcon fa-regular fa-trash-can"
+                  onClick={handleDelete}
+                />
               </div>
             )}
           </h1>
@@ -82,7 +97,9 @@ export default function SinglePost() {
               <b> {post.username}</b>
             </NavLink>
           </span>
-          <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
+          <span className="singlePostDate">
+            {new Date(post.createdAt).toDateString()}
+          </span>
         </div>
         {updateMode ? (
           <textarea
@@ -94,7 +111,10 @@ export default function SinglePost() {
           <p className="singlePostDesc">{desc}</p>
         )}
         {updateMode && (
-          <button type="button" className="singlePostBtn" onClick={handleUpdate}>
+          <button
+            type="button"
+            className="singlePostBtn"
+            onClick={handleUpdate}>
             Update
           </button>
         )}
