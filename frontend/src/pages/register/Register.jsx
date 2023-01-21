@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import './register.css';
 import { NavLink } from 'react-router-dom';
 import React from 'react';

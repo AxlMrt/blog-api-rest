@@ -1,4 +1,3 @@
-/* eslint-disable prefer-template */
 import './home.css';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
@@ -14,7 +13,7 @@ export default function Home() {
 
   React.useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get(`${baseURL}/posts` + search);
+      const res = await axios.get(`${baseURL}/posts${search}`);
       setPosts(res.data);
     };
 

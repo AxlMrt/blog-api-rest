@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/no-autofocus */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable prefer-template */
 import './singlePost.css';
 import { useLocation, NavLink } from 'react-router-dom';
 import axios from 'axios';
@@ -22,7 +18,7 @@ export default function SinglePost() {
 
   React.useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(`${baseURL}/posts/` + path);
+      const res = await axios.get(`${baseURL}/posts/${path}`);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -32,8 +28,9 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseURL}/posts/` + path, {
-        data: { username: user.others.username }
+      await axios.delete(`${baseURL}/posts/${path}`, {
+        data: { username: user.others.username },
+        headers: { authorization: `Bearer ${user.accessToken}` }
       });
       window.location.replace('/');
     } catch (error) {
@@ -43,7 +40,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${baseURL}/posts/` + path, {
+      await axios.put(`${baseURL}/posts/${path}`, {
         username: user.others.username,
         title,
         desc

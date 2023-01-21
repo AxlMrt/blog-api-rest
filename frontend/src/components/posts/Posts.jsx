@@ -1,14 +1,14 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable array-callback-return */
 import Post from '../post/Post';
 import './posts.css';
 
 export default function Posts({ posts }) {
   return (
     <div className="posts">
-      {posts.map((post, idx) => (
+      {
+        posts.map((post, idx) => (
         <Post key={idx} post={post} />
-      ))}
+        ))
+      }
     </div>
   );
 }

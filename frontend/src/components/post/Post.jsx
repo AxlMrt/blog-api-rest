@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable react/no-array-index-key */
 import './post.css';
 import { NavLink } from 'react-router-dom';
 
@@ -20,7 +18,9 @@ export default function Post({ post }) {
           <span className="postTitle">{post.title}</span>
         </NavLink>
         <hr />
-        <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
+        <span className="postDate">
+          {new Date(post.createdAt).toDateString()}
+        </span>
       </div>
       <p className="postDesc">{post.desc}</p>
     </article>

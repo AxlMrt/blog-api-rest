@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import './topbar.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -54,7 +51,7 @@ export default function TopBar() {
             <img
               className="topImg"
               src={user.profilePic ? PF + user.profilePic : Profile}
-              alt="Profile Picture"
+              alt="Profile"
             />
             <i className="topSearch fa-solid fa-magnifying-glass" />
           </NavLink>

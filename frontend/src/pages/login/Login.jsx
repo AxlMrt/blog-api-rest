@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import './login.css';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { Context } from '../../context/Context';
@@ -8,10 +7,12 @@ import { Context } from '../../context/Context';
 export default function Login() {
   const userRef = useRef();
   const passwordRef = useRef();
+  const [err, setErr] = useState(false);
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErr(false);
     dispatch({ type: 'LOGIN_START' });
     try {
       const baseURL = 'http://localhost:3000/api/v1';
@@ -22,6 +23,7 @@ export default function Login() {
       dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
     } catch (error) {
       dispatch({ type: 'LOGIN_FAILURE' });
+      setErr(true);
     }
   };
 
@@ -46,6 +48,9 @@ export default function Login() {
         <button type="submit" className="loginBtn" disabled={isFetching}>
           Login
         </button>
+        {
+          err && <span className='logErr'>Username or password incorrect.</span>
+        }
       </form>
       <button type="button" className="loginRegisterBtn">
         <NavLink to="/register">Register</NavLink>

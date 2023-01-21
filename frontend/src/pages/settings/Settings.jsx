@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import './settings.css';
 import React from 'react';
 import axios from 'axios';
@@ -111,13 +108,13 @@ export default function Settings() {
           <label>Username</label>
           <input
             type="text"
-            placeholder={user.username}
+            placeholder={user.others.username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <label>Email</label>
           <input
             type="email"
-            placeholder={user.email}
+            placeholder={user.others.email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <label>password</label>
