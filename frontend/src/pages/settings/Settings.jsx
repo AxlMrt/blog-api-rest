@@ -44,7 +44,10 @@ export default function Settings() {
     try {
       const res = await axios.put(
         `${baseURL}/users/${user.others._id}`,
-        updatedUser
+        updatedUser,
+        {
+          headers: { authorization: `Bearer ${user.accessToken}` }
+        }
       );
       setSuccess(true);
       dispatch({ type: 'UPDATE_SUCCESS', payload: res.data });
@@ -54,14 +57,16 @@ export default function Settings() {
   };
 
   const handleDelete = async () => {
+    const config = {
+      data: {
+        userId: user.others._id,
+        isAdmin: user.others.isAdmin
+      },
+      headers: { authorization: `Bearer ${user.accessToken}` }
+    };
+
     try {
-      await axios.delete(`${baseURL}/users/${user.others._id}`, {
-        data: {
-          userId: user.others._id,
-          isAdmin: user.others.isAdmin
-        },
-        headers: { authorization: `Bearer ${user.accessToken}` }
-      });
+      await axios.delete(`${baseURL}/users/${user.others._id}`, config);
       window.location.replace('/');
       dispatch({ type: 'LOGOUT' });
     } catch (error) {

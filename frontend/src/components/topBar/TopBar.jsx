@@ -50,7 +50,11 @@ export default function TopBar() {
           <NavLink to="/settings">
             <img
               className="topImg"
-              src={user.profilePic ? PF + user.profilePic : Profile}
+              src={
+                user.others.profilePic
+                  ? PF + user.others.profilePic
+                  : Profile
+              }
               alt="Profile"
             />
             <i className="topSearch fa-solid fa-magnifying-glass" />

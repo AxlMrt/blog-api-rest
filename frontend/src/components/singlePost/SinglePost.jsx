@@ -39,11 +39,15 @@ export default function SinglePost() {
   };
 
   const handleUpdate = async () => {
+    const config = {
+      username: user.others.username,
+      title,
+      desc
+    };
+
     try {
-      await axios.put(`${baseURL}/posts/${path}`, {
-        username: user.others.username,
-        title,
-        desc
+      await axios.put(`${baseURL}/posts/${path}`, config, {
+        headers: { authorization: `Bearer ${user.accessToken}` }
       });
       setUpdateMode(false);
     } catch (error) {
