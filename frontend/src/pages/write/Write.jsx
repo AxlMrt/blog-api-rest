@@ -1,6 +1,3 @@
-/* eslint-disable prefer-template */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import './write.css';
 import axios from 'axios';
 import React from 'react';
@@ -9,6 +6,7 @@ import { Context } from '../../context/Context';
 export default function Write() {
   const [title, setTitle] = React.useState('');
   const [desc, setDesc] = React.useState('');
+  const [categories, setCat] = React.useState([]);
   const [file, setFile] = React.useState(null);
   const [err, setErr] = React.useState(false);
   const { user } = React.useContext(Context);
@@ -22,7 +20,8 @@ export default function Write() {
     const newPost = {
       username: user.others.username,
       title,
-      desc
+      desc,
+      categories
     };
 
     if (file) {
@@ -41,7 +40,7 @@ export default function Write() {
 
     try {
       const res = await axios.post(`${baseURL}/posts`, newPost);
-      window.location.replace('/post/' + res.data._id);
+      window.location.replace(`/post/${res.data._id}`);
     } catch (error) {
       setErr(true);
     }
@@ -76,6 +75,22 @@ export default function Write() {
             onChange={(e) => setDesc(e.target.value)}
             placeholder="Tell your story"
           />
+        </div>
+        <div className="writeFormGroup">
+          <select
+            name=""
+            id="categories"
+            onChange={(e) => setCat(e.target.value)}>
+            <option value="" selected>
+              Select a category
+            </option>
+            <option value="Music">Music</option>
+            <option value="Life">Life</option>
+            <option value="Sport">Sport</option>
+            <option value="Cinema">Cinema</option>
+            <option value="Style">Style</option>
+            <option value="Tech">Tech</option>
+          </select>
         </div>
         <button className="writeSubmit" type="submit">
           Publish

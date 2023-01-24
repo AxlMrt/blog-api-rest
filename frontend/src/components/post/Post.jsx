@@ -8,11 +8,13 @@ export default function Post({ post }) {
       {post.img && <img className="postImg" src={PF + post.img} alt="" />}
       <div className="postInfo">
         <div className="postCats">
-          {post.categories.map((cat, idx) => (
+          {
+            post.categories.map((cat, idx) => (
             <span key={idx} className="postCat">
               {cat}
             </span>
-          ))}
+            ))
+          }
         </div>
         <NavLink className="link" to={`/post/${post._id}`}>
           <span className="postTitle">{post.title}</span>
