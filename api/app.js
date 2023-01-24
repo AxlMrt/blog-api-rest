@@ -18,7 +18,8 @@ const catRoute = require('./routes/categories');
 
 // middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://blog-axl.onrender.com'],
+  origin: ['http://localhost:5173/', process.env.REQUEST],
+  optionsSuccessStatus: 200
 }));
 app.use(express.json());
 app.use('/public/images', express.static(path.join(__dirname, '/public/images')));

@@ -2,7 +2,7 @@ import './post.css';
 import { NavLink } from 'react-router-dom';
 
 export default function Post({ post }) {
-  const PF = 'http://localhost:3000/public/images/';
+  const PF = `${import.meta.env.VITE_API_URL}/public/images/`;
   return (
     <article className="post">
       {post.img && <img className="postImg" src={PF + post.img} alt="" />}
