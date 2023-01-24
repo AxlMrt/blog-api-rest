@@ -17,7 +17,9 @@ const postRoute = require('./routes/posts');
 const catRoute = require('./routes/categories');
 
 // middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://blog-axl.onrender.com'],
+}));
 app.use(express.json());
 app.use('/public/images', express.static(path.join(__dirname, '/public/images')));
 
