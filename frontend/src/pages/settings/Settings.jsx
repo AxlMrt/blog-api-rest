@@ -50,6 +50,7 @@ export default function Settings() {
         }
       );
       setSuccess(true);
+      console.log(res.data);
       dispatch({ type: 'UPDATE_SUCCESS', payload: res.data });
     } catch (error) {
       dispatch({ type: 'UPDATE_FAILURE' });

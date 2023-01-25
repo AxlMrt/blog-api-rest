@@ -1,5 +1,5 @@
 import './header.css';
-import headerPic from '../../assets/header.webp';
+import headerPic from '../../assets/header.jpg';
 
 export default function Header() {
   return (
