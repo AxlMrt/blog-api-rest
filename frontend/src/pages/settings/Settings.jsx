@@ -8,9 +8,9 @@ import Profile from '../../assets/profil.jpg';
 export default function Settings() {
   const { user, dispatch } = React.useContext(Context);
   const [file, setFile] = React.useState(null);
-  const [username, setUsername] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState(user.others.username);
+  const [email, setEmail] = React.useState(user.others.email);
+  const [password, setPassword] = React.useState(user.others.password);
   const [success, setSuccess] = React.useState(false);
 
   const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
@@ -113,18 +113,19 @@ export default function Settings() {
           <label>Username</label>
           <input
             type="text"
-            placeholder={user.others.username}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <label>Email</label>
           <input
             type="email"
-            placeholder={user.others.email}
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <label>password</label>
           <input
             type="password"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit" className="settingsSubmit">
