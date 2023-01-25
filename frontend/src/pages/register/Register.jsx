@@ -1,5 +1,5 @@
 import './register.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import React from 'react';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ export default function Register() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ export default function Register() {
         email,
         password
       });
-      res.data && window.location.replace('/login');
+      res.data && navigate('/login');
     } catch (err) {
       setError(true);
     }
