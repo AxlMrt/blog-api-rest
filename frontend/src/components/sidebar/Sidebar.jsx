@@ -2,7 +2,7 @@ import './sidebar.css';
 import React from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import profilePic from '../../assets/profil.png';
+import profilePic from '../../assets/sideprofil.jpg';
 
 export default function Sidebar() {
   const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
