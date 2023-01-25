@@ -1,6 +1,7 @@
 import './write.css';
 import axios from 'axios';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/Context';
 
 export default function Write() {
@@ -10,6 +11,7 @@ export default function Write() {
   const [file, setFile] = React.useState(null);
   const [err, setErr] = React.useState(false);
   const { user } = React.useContext(Context);
+  const navigate = useNavigate();
 
   const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
 
@@ -40,7 +42,7 @@ export default function Write() {
 
     try {
       const res = await axios.post(`${baseURL}/posts`, newPost);
-      window.location.replace(`/post/${res.data._id}`);
+      navigate(`/post/${res.data._id}`);
     } catch (error) {
       setErr(true);
     }
