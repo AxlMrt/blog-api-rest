@@ -7,7 +7,7 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Posts from '../../components/posts/Posts';
 
 export default function Home() {
-  const baseURL = 'http://localhost:3000/api/v1';
+  const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
   const [posts, setPosts] = React.useState([]);
   const { search } = useLocation();
 

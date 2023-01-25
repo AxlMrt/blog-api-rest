@@ -13,8 +13,8 @@ export default function Settings() {
   const [password, setPassword] = React.useState('');
   const [success, setSuccess] = React.useState(false);
 
-  const baseURL = 'http://localhost:3000/api/v1';
-  const PF = 'http://localhost:3000/public/images/';
+  const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
+  const PF = `${import.meta.env.VITE_API_URL}/public/images/`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

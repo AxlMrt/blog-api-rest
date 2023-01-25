@@ -5,8 +5,8 @@ import React from 'react';
 import { Context } from '../../context/Context';
 
 export default function SinglePost() {
-  const baseURL = 'http://localhost:3000/api/v1';
-  const PF = 'http://localhost:3000/public/images';
+  const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
+  const PF = `${import.meta.env.VITE_API_URL}/public/images`;
 
   const location = useLocation();
   const path = location.pathname.split('/')[2];

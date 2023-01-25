@@ -11,7 +11,7 @@ export default function Write() {
   const [err, setErr] = React.useState(false);
   const { user } = React.useContext(Context);
 
-  const baseURL = 'http://localhost:3000/api/v1';
+  const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

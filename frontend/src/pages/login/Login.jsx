@@ -15,7 +15,7 @@ export default function Login() {
     setErr(false);
     dispatch({ type: 'LOGIN_START' });
     try {
-      const baseURL = 'http://localhost:3000/api/v1';
+      const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
       const res = await axios.post(`${baseURL}/auth/login`, {
         username: userRef.current.value,
         password: passwordRef.current.value

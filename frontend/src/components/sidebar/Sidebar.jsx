@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import profilePic from '../../assets/profil.png';
 
 export default function Sidebar() {
-  const baseURL = 'http://localhost:3000/api/v1';
+  const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
   const [cats, setCats] = React.useState([]);
 
   React.useEffect(() => {

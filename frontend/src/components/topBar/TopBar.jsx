@@ -5,7 +5,7 @@ import { Context } from '../../context/Context';
 import Profile from '../../assets/profil.jpg';
 
 export default function TopBar() {
-  const PF = 'http://localhost:3000/public/images/';
+  const PF = `${import.meta.env.VITE_API_URL}/public/images/`;
   const { user, dispatch } = React.useContext(Context);
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
