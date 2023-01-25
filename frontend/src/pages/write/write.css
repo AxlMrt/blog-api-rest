@@ -45,6 +45,12 @@
   outline: none;
 }
 
+.writeCat {
+  background: none;
+  color: grey;
+  border-bottom: 1px solid black;
+}
+
 .writeText {
   height: 100vh;
   font-size: 1.25rem;

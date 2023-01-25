@@ -69,21 +69,12 @@ export default function Write() {
           />
         </div>
         <div className="writeFormGroup">
-          <textarea
-            type="text"
-            className="writeInput writeText"
-            onChange={(e) => setDesc(e.target.value)}
-            placeholder="Tell your story"
-          />
-        </div>
-        <div className="writeFormGroup">
           <select
             name=""
-            id="categories"
-            onChange={(e) => setCat(e.target.value)}>
-            <option value="" selected>
-              Select a category
-            </option>
+            className="writeInput writeCat"
+            onChange={(e) => setCat(e.target.value)}
+            defaultValue="DEFAULT">
+            <option value="DEFAULT">-- Select a category --</option>
             <option value="Music">Music</option>
             <option value="Life">Life</option>
             <option value="Sport">Sport</option>
@@ -91,6 +82,14 @@ export default function Write() {
             <option value="Style">Style</option>
             <option value="Tech">Tech</option>
           </select>
+        </div>
+        <div className="writeFormGroup">
+          <textarea
+            type="text"
+            className="writeInput writeText"
+            onChange={(e) => setDesc(e.target.value)}
+            placeholder="Tell your story"
+          />
         </div>
         <button className="writeSubmit" type="submit">
           Publish
