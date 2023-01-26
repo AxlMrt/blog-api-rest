@@ -15,7 +15,7 @@ export default function Sidebar() {
     };
 
     getCat();
-  }, []);
+  }, [baseURL]);
   return (
     <div className="sidebar">
       <div className="sidebarItem">

@@ -10,9 +10,9 @@ export default function Post({ post }) {
         <div className="postCats">
           {
             post.categories.map((cat, idx) => (
-            <span key={idx} className="postCat">
+            <NavLink to={`?cat=${cat}`} key={idx} className="postCat">
               {cat}
-            </span>
+            </NavLink>
             ))
           }
         </div>
