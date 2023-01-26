@@ -69,3 +69,9 @@
   margin-left: .6rem;
   cursor: pointer;
 }
+
+@media screen and (max-width: 730px) {
+  .sidebar {
+    display: none;
+  }
+}
