@@ -1,6 +1,7 @@
 :root {
   --icons: #444;
   --searchIcon: #666;
+  --gold: #be9656;
 }
 
 .top {
@@ -59,6 +60,10 @@
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+}
+
+.topListItem:hover {
+  color: var(--gold);
 }
 
 .topSearch {
