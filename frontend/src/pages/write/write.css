@@ -18,7 +18,7 @@
 .writeFormGroup {
   display: flex;
   align-items: center;
-  margin-left: 9rem;
+  margin-left: 15%;
 }
 
 .writeIcon {
@@ -58,7 +58,7 @@
 
 .writeSubmit {
   position: absolute;
-  top: 1.25rem;
+  top: .9rem;
   right: 3rem;
   background: teal;
   color: white;
