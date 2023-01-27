@@ -25,6 +25,11 @@
   flex: 6
 }
 
+.topRightLink {
+  display: flex;
+  align-items: center;
+}
+
 .topIcon {
   font-size: 1.25rem;
   margin-right: .5rem;
@@ -76,9 +81,14 @@
     color: white;
   }
 
-  .topSearch {
-    color: white;
+  .topRightLink {
+    margin-top: 1.5rem;
   }
+
+/*   .topSearch {
+    color: white;
+  } */
+
   /* Position and sizing of burger button */
   .bm-burger-button {
     position: fixed;

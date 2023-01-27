@@ -40,7 +40,7 @@ export default function Nav() {
       </nav>
       <div className="topRight">
         {user ? (
-          <NavLink to="/settings">
+          <NavLink to="/settings" className="topRightLink">
             <img
               className="topImg"
               src={
@@ -50,7 +50,7 @@ export default function Nav() {
               }
               alt="Profile"
             />
-            <i className="topSearch fa-solid fa-magnifying-glass" />
+            {/* <i className="topSearch fa-solid fa-magnifying-glass" /> */}
           </NavLink>
         ) : (
           <>
