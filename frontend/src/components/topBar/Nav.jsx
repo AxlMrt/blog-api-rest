@@ -60,7 +60,7 @@ export default function Nav() {
             <NavLink to="/register" className="topListItem">
               Register
             </NavLink>
-            <i className="topSearch fa-solid fa-magnifying-glass" />
+            {/* <i className="topSearch fa-solid fa-magnifying-glass" /> */}
           </>
         )}
       </div>
