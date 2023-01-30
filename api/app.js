@@ -18,7 +18,7 @@ const catRoute = require('./routes/categories');
 
 // middleware
 app.use(cors({
-  origin: ['http://localhost:5173', process.env.REQUEST],
+  origin: ['http://localhost:5174', process.env.REQUEST],
   optionsSuccessStatus: 200
 }));
 app.use(express.json());
