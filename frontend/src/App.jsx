@@ -11,6 +11,7 @@ import Settings from './pages/settings/Settings';
 import Single from './pages/single/Single';
 import Write from './pages/write/Write';
 import About from './pages/about/About';
+import Button from './components/topBar/Button';
 
 function App() {
   const { user } = React.useContext(Context);
