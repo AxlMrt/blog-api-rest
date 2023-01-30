@@ -59,11 +59,13 @@
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
+  transition: all .05s ease-in;
   cursor: pointer;
 }
 
 .topListItem:hover {
   color: var(--gold);
+  transition: all .15s ease-out;
 }
 
 .topSearch {
@@ -110,7 +112,7 @@
 
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: #a90000;
+    background: var(--gold);
   }
 
   /* Position and sizing of clickable cross button */
