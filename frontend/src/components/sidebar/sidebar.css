@@ -2,6 +2,7 @@
   --bg: #fdfbfb;
   --border: #a7a4a4;
   --title: #222;
+  --gold: #be9656;
 }
 
 .sidebar {
@@ -65,7 +66,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: black;
+  background-color: var(--gold);
   transform-origin: bottom left;
   transition: transform .25s ease-out;
 }
