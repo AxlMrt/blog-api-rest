@@ -1,13 +1,13 @@
 import './register.css';
+import { useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import React from 'react';
 import axios from 'axios';
 
 export default function Register() {
-  const usernameRef = React.useRef();
-  const emailRef = React.useRef();
-  const passwordRef = React.useRef();
-  const [error, setError] = React.useState(false);
+  const usernameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

@@ -1,16 +1,16 @@
 import './write.css';
 import axios from 'axios';
-import React from 'react';
+import { useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../../context/Context';
 
 export default function Write() {
-  const [title, setTitle] = React.useState('');
-  const [desc, setDesc] = React.useState('');
-  const [categories, setCat] = React.useState([]);
-  const [file, setFile] = React.useState(null);
-  const [err, setErr] = React.useState(false);
-  const { user } = React.useContext(Context);
+  const titleRef = useRef();
+  const descRef = useRef();
+  const catRef = useRef();
+  const [file, setFile] = useState(null);
+  const [err, setErr] = useState(false);
+  const { user } = useContext(Context);
   const navigate = useNavigate();
 
   const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
@@ -21,9 +21,9 @@ export default function Write() {
 
     const newPost = {
       username: user.others.username,
-      title,
-      desc,
-      categories
+      title: titleRef.current.value,
+      desc: descRef.current.value,
+      categories: catRef.current.value
     };
 
     if (file) {
@@ -66,7 +66,7 @@ export default function Write() {
           <input
             type="text"
             className="writeInput"
-            onChange={(e) => setTitle(e.target.value)}
+            ref={titleRef}
             placeholder="Title"
           />
         </div>
@@ -74,7 +74,7 @@ export default function Write() {
           <select
             name=""
             className="writeInput writeCat"
-            onChange={(e) => setCat(e.target.value)}
+            ref={catRef}
             defaultValue="DEFAULT">
             <option value="DEFAULT">-- Select a category --</option>
             <option value="Music">Music</option>
@@ -89,7 +89,7 @@ export default function Write() {
           <textarea
             type="text"
             className="writeInput writeText"
-            onChange={(e) => setDesc(e.target.value)}
+            ref={descRef}
             placeholder="Tell your story"
           />
         </div>
