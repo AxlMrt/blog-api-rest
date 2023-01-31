@@ -75,7 +75,7 @@
   margin-left: 1rem;
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 768px) {
 
   .topList {
     flex-direction: column;

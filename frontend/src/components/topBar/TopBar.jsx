@@ -12,21 +12,19 @@ export default function TopBar() {
   );
 
   React.useEffect(() => {
-    window
-      .matchMedia('(max-width: 768px)')
-      .addEventListener('change', (e) => setMatches(e.matches));
-  }, []);
-
-  React.useEffect(() => {
     const closeMenu = (e) => {
       if (!burgRef.current.contains(e.target)) {
         ctx.closeMenu();
       }
     };
 
-    document.body.addEventListener('mousedown', closeMenu);
+    window
+      .matchMedia('(max-width: 768px)')
+      .addEventListener('change', (e) => setMatches(e.matches));
+
+    matches && document.body.addEventListener('mousedown', closeMenu);
     return () => document.body.removeEventListener('mousedown', closeMenu);
-  }, [ctx]);
+  }, [ctx, matches]);
 
   return (
     <div className="top">
