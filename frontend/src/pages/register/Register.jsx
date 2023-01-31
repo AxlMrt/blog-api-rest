@@ -4,9 +4,9 @@ import React from 'react';
 import axios from 'axios';
 
 export default function Register() {
-  const [username, setUsername] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const usernameRef = React.useRef();
+  const emailRef = React.useRef();
+  const passwordRef = React.useRef();
   const [error, setError] = React.useState(false);
   const navigate = useNavigate();
 
@@ -17,12 +17,13 @@ export default function Register() {
     try {
       const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
       const res = await axios.post(`${baseURL}/auth/register`, {
-        username,
-        email,
-        password
+        username: usernameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value
       });
       res.data && navigate('/login');
     } catch (err) {
+      console.log(err);
       setError(true);
     }
   };
@@ -35,21 +36,21 @@ export default function Register() {
         <input
           type="text"
           className="registerInput"
-          onChange={(e) => setUsername(e.target.value)}
+          ref={usernameRef}
           placeholder="Enter you username"
         />
         <label>Email</label>
         <input
           type="email"
           className="registerInput"
-          onChange={(e) => setEmail(e.target.value)}
+          ref={emailRef}
           placeholder="Enter you email"
         />
         <label>Password</label>
         <input
           type="password"
           className="registerInput"
-          onChange={(e) => setPassword(e.target.value)}
+          ref={passwordRef}
           placeholder="Enter you password"
         />
         <button type="submit" className="registerBtn">
