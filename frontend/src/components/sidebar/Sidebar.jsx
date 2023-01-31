@@ -1,14 +1,14 @@
 import './sidebar.css';
-import React from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import profilePic from '../../assets/sideprofil.jpg';
 
 export default function Sidebar() {
   const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
-  const [cats, setCats] = React.useState([]);
+  const [cats, setCats] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getCat = async () => {
       const res = await axios.get(`${baseURL}/categories`);
       setCats(res.data);
@@ -30,13 +30,14 @@ export default function Sidebar() {
       <div className="sidebarItem">
         <span className="sidebarTitle">Categories</span>
         <ul className="sidebarList">
-          {
-            cats.map((cat, idx) => (
-            <NavLink key={idx} to={`/?cat=${cat.name}`} className="link">
+          {cats.map((cat) => (
+            <NavLink
+              key={cat.name}
+              to={`/?cat=${cat.name}`}
+              className="link">
               <li className="sidebarListItem">{cat.name}</li>
             </NavLink>
-            ))
-          }
+          ))}
         </ul>
       </div>
       <div className="sidebarItem">

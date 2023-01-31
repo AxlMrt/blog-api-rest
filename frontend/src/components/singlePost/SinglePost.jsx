@@ -1,7 +1,7 @@
 import './singlePost.css';
 import { useLocation, NavLink } from 'react-router-dom';
 import axios from 'axios';
-import React from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Context } from '../../context/Context';
 
 export default function SinglePost() {
@@ -10,13 +10,13 @@ export default function SinglePost() {
 
   const location = useLocation();
   const path = location.pathname.split('/')[2];
-  const { user } = React.useContext(Context);
-  const [post, setPost] = React.useState([]);
-  const [title, setTitle] = React.useState('');
-  const [desc, setDesc] = React.useState('');
-  const [updateMode, setUpdateMode] = React.useState(false);
+  const { user } = useContext(Context);
+  const [post, setPost] = useState([]);
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+  const [updateMode, setUpdateMode] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(`${baseURL}/posts/${path}`);
       setPost(res.data);
@@ -24,7 +24,7 @@ export default function SinglePost() {
       setDesc(res.data.desc);
     };
     getPost();
-  }, [path]);
+  }, [baseURL, path]);
 
   const handleDelete = async () => {
     try {

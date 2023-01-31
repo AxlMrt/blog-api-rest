@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-import { useState } from 'react';
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useEffect, useReducer, useState } from 'react';
 import Reducer from './Reducer';
 
 const INITIAL_STATE = {

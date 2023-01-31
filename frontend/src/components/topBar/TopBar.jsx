@@ -1,17 +1,17 @@
 import './topbar.css';
-import React from 'react';
+import { useContext, useRef, useState, useEffect } from 'react';
 import { elastic as Menu } from 'react-burger-menu';
 import Nav from './Nav';
 import { Context } from '../../context/Context';
 
 export default function TopBar() {
-  const ctx = React.useContext(Context);
-  const burgRef = React.useRef();
-  const [matches, setMatches] = React.useState(
+  const ctx = useContext(Context);
+  const burgRef = useRef();
+  const [matches, setMatches] = useState(
     window.matchMedia('(max-width: 768px)').matches
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const closeMenu = (e) => {
       if (!burgRef.current.contains(e.target)) {
         ctx.closeMenu();
