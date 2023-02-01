@@ -82,6 +82,7 @@
 }
 
 .singlePostDescInput {
+  height: 100vh;
   font-size: 1.1rem;
   line-height: 1.5rem;
   border: none;
