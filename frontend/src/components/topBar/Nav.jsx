@@ -33,25 +33,28 @@ export default function Nav() {
               {user && 'Write'}
             </NavLink>
           </li>
-          <li className="topListItem" onClick={handleLogout}>
-            {user && 'Logout'}
-          </li>
+
         </ul>
       </nav>
       <div className="topRight">
         {user ? (
-          <NavLink to="/settings" className="topRightLink">
-            <img
-              className="topImg"
-              src={
-                user.others.profilePic
-                  ? PF + user.others.profilePic
-                  : Profile
-              }
-              alt="Profile"
-            />
-            {/* <i className="topSearch fa-solid fa-magnifying-glass" /> */}
-          </NavLink>
+          <>
+            <NavLink to="/settings" className="topRightLink">
+              <img
+                className="topImg"
+                src={
+                  user.others.profilePic
+                    ? PF + user.others.profilePic
+                    : Profile
+                }
+                alt="Profile"
+              />
+              {/* <i className="topSearch fa-solid fa-magnifying-glass" /> */}
+            </NavLink>
+            <p className="topListItem" onClick={handleLogout}>
+              {user && 'Logout'}
+            </p>
+          </>
         ) : (
           <>
             <NavLink to="/login" className="topListItem">
