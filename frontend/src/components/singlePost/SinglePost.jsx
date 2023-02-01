@@ -1,5 +1,5 @@
 import './singlePost.css';
-import { useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../../context/Context';
@@ -8,6 +8,7 @@ export default function SinglePost() {
   const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`;
   const PF = `${import.meta.env.VITE_API_URL}/public/images`;
 
+  const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname.split('/')[2];
   const { user } = useContext(Context);
@@ -32,7 +33,7 @@ export default function SinglePost() {
         data: { username: user.others.username },
         headers: { authorization: `Bearer ${user.accessToken}` }
       });
-      window.location.replace('/');
+      navigate('/');
     } catch (error) {
       /* empty, nothing much to add */
     }

@@ -1,4 +1,10 @@
-import { createContext, useEffect, useReducer, useState } from 'react';
+import {
+  createContext,
+  useEffect,
+  useReducer,
+  useState,
+  useMemo
+} from 'react';
 import Reducer from './Reducer';
 
 const INITIAL_STATE = {
@@ -20,17 +26,20 @@ export function ContextProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{
-        isMenuOpen: menuOpenState,
-        toggleMenu: () => setMenuOpenState(!menuOpenState),
-        stateChangeHandler: (newState) =>
-          setMenuOpenState(newState.isOpen),
-        closeMenu: () => setMenuOpenState(false),
-        user: state.user,
-        isFetching: state.isFetching,
-        error: state.error,
-        dispatch
-      }}>
+      value={useMemo(
+        () => ({
+          isMenuOpen: menuOpenState,
+          toggleMenu: () => setMenuOpenState(!menuOpenState),
+          stateChangeHandler: (newState) =>
+            setMenuOpenState(newState.isOpen),
+          closeMenu: () => setMenuOpenState(false),
+          user: state.user,
+          isFetching: state.isFetching,
+          error: state.error,
+          dispatch
+        }),
+        [menuOpenState, state.error, state.isFetching, state.user]
+      )}>
       {children}
     </Context.Provider>
   );
