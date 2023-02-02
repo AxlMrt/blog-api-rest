@@ -23,7 +23,6 @@ export default function Register() {
       });
       res.data && navigate('/login');
     } catch (err) {
-      console.log(err);
       setError(true);
     }
   };
