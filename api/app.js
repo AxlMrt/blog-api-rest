@@ -15,6 +15,7 @@ const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
 const postRoute = require('./routes/posts');
 const catRoute = require('./routes/categories');
+const contactRoute = require('./routes/contactMail');
 
 // middleware
 app.use(cors({
@@ -42,6 +43,7 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/posts', postRoute);
 app.use('/api/v1/categories', catRoute);
+app.use('/api/v1/contact', contactRoute);
 
 app.post('/api/v1/uploads', upload.single('file'), (req, res) => {
   res.status(200).json('File has been uploaded.');
